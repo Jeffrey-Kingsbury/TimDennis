@@ -47,7 +47,6 @@
     --blue2: #5676A3;
     --blue3: #3066B3;
     --blue4: #083166;
-
     --light-90: #F2F8FF90;
 }
 
@@ -155,6 +154,29 @@ body{
     border-radius: 5px;
 }
 
+.splashContent .content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+
+.splashContent .content span{
+    height: 200px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    background: linear-gradient(90deg,#00051400, var(--dark),var(--dark), #00051400);
+
+} 
+
 .info span{
     margin: 1rem auto;
     display: flex;
@@ -172,6 +194,12 @@ body{
     font-size: 1.5rem;
     font-weight: 600;
 }
+
+.mt-2{
+  margin-top: 2rem;  
+  font-family: "ginger"; 
+}
+
 
 @media only screen and (max-width: 900px) {
     .info{

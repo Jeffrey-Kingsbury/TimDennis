@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "ginger";
+  font-weight: normal;
+  src: url('./fonts/Ginger/F37Ginger-Regular.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "ginger";
+  font-weight: bold;
+  src: url('./fonts/Ginger/F37Ginger-Bold.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "ginger";
+  font-weight: italic;
+  src: url('./fonts/Ginger/F37Ginger-Italic.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "independant";
+  font-weight: normal;
+  src: url('./fonts/Independent%20Headline/INDEPENDENT_Headline-Medium.otf') format("opentype");
+}
+
+@keyframes bouncing {
+  0% {
+      transform: translate(0) rotate(45deg);
+  }
+
+  50% {
+      transform: translate(0, 8px) rotate(45deg);
+  }
+
+  100% {
+      transform: translate(0) rotate(45deg);
+  }
+}
+
+:root {
+  --light: #F2F8FF;
+  --dark: #000514;
+  --blue1: #B5CDE5;
+  --blue2: #5676A3;
+  --blue3: #3066B3;
+  --blue4: #083166;
+  --light-90: #F2F8FF90;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
