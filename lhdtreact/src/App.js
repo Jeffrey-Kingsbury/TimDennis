@@ -5,6 +5,7 @@ import Header from './components/Header';
 import styled from 'styled-components';
 import Splash from './components/Splash';
 import Contact from './components/Contact';
+import Phase1 from './components/Phase1';
 
 function App() {
   const { lang } = useContext(userContext);
@@ -13,6 +14,7 @@ function App() {
     <Header />
     <Wrapper>
       <Splash />
+      <Phase1 />
       <Contact />
     </Wrapper>
   </>
