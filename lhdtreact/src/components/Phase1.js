@@ -2,14 +2,16 @@ import styled from "styled-components";
 import { useContext } from 'react';
 import { userContext } from '../UserContext';
 import bg1 from '../images/HDT_aerialshot_mood2.jpg';
+import FadeIn from 'react-fade-in';
 
 const Phase1 = () => {
     const { lang, setLang } = useContext(userContext);
 
     return (
-        <Wrapper>
+        <Wrapper id="phase1">
             <LargeCont>
                 <Title>PHASE 1</Title>
+
                 <Subtitle>Maisons de ville et condos en montagne</Subtitle>
                 <CircleWrapper>
                     <CircleLeft>
@@ -46,12 +48,14 @@ overflow: hidden;
 display: flex;
 flex-direction: column;
 align-items: center;
+
 `;
 
 const LargeCont = styled.div`
 width: 100%;
 height: 15vh;
-background-color: aliceblue;
+background-color: var(--dark);
+color: var(--light);
 position: relative;
 display: flex;
 flex-direction: column;

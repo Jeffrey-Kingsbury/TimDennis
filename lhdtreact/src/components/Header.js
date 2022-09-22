@@ -2,6 +2,7 @@ import styled from "styled-components";
 import logoSrc from "../images/Logo/White/LHDT_Logo_White.png";
 import { useContext } from 'react';
 import { userContext } from '../UserContext';
+import FadeIn from 'react-fade-in';
 
 const Header = () => {
     const { lang, setLang } = useContext(userContext);
@@ -13,25 +14,43 @@ const Header = () => {
     return (
         <Wrapper>
             <LogoWrap>
-            <Logo src={logoSrc} alt="L'hymne des trembles logo" draggable={false} />
-            <Nav>
-            <NavItem>
-                    {lang === "FR" ? "A PROPOS" : "ABOUT"}
-                </NavItem>
-                <NavItem>
-                    PHASE 1
-                </NavItem>
-                <NavItem>
-                    PHASE 2
-                </NavItem>
-                <NavItem>
-                    {lang === "FR" ? "COMMODITES" : "AMENITIES"}
-                </NavItem>
-                <NavItem>
-                    CONTACT
-                </NavItem>
-                <NavItem onClick={() => { langChange() }}>{lang}</NavItem>
-            </Nav>
+                <Logo src={logoSrc} alt="L'hymne des trembles logo" draggable={false} />
+                <Nav>
+                    <FadeIn delay={200} transitionDuration={900}>
+                        <NavItem href="#">
+                            {lang === "FR" ? "A PROPOS" : "ABOUT"}
+                        </NavItem>
+                    </FadeIn>
+                    <FadeIn delay={400} transitionDuration={900}>
+                        <NavItem href="#phase1">
+                            PHASE 1
+                        </NavItem>
+                    </FadeIn>
+                    <FadeIn delay={600} transitionDuration={900}>
+                        <NavItem>
+                            PHASE 2
+                        </NavItem>
+                    </FadeIn>
+
+                    <FadeIn delay={800} transitionDuration={900}>
+                        <NavItem>
+                            {lang === "FR" ? "COMMODITES" : "AMENITIES"}
+                        </NavItem>
+
+                    </FadeIn>
+
+                    <FadeIn delay={1000} transitionDuration={900}>
+
+                        <NavItem href="#contact">
+                            CONTACT
+                        </NavItem>
+                    </FadeIn>
+
+                    <FadeIn delay={1200} transitionDuration={900}>
+
+                        <NavItem onClick={() => { langChange() }}>{lang}</NavItem>
+                    </FadeIn>
+                </Nav>
             </LogoWrap>
         </Wrapper>
     )
@@ -48,7 +67,6 @@ position: sticky;
 margin-bottom: -6rem;
 top: 0;
 z-index: 999;
-text-rendering: optimizeLegibility;
 
 @media only screen and (max-width: 900px) {
         background: var(--dark);
@@ -67,7 +85,6 @@ const Logo = styled.img`
 `;
 
 const Nav = styled.ul`
-font-family: "independant";
 height: 70%;
 width: 70%;
 display: flex;
@@ -79,7 +96,7 @@ justify-content: center;
     }
 `;
 
-const NavItem = styled.li`
+const NavItem = styled.a`
 color: var(--light);
 text-decoration: none;
 list-style: none;
@@ -96,7 +113,7 @@ transition: all .1s ease;
     }   
 `;
 
-const LogoWrap =styled.span`
+const LogoWrap = styled.span`
 width: 100%;
 height: 100%;
 display: flex;
