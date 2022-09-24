@@ -1,21 +1,24 @@
 import './App.css';
-import { useContext } from 'react';
-import { userContext } from './UserContext';
 import Header from './components/Header';
 import styled from 'styled-components';
 import Splash from './components/Splash';
 import Contact from './components/Contact';
 import Phase1 from './components/Phase1';
+import Phase2 from './components/Phase2';
 import Footer from './components/Footer';
+import Commodites from './components/Commodites';
+import Blurb from './components/Blurb';
 
 function App() {
-  const { lang } = useContext(userContext);
 
   return (<>
     <Header />
     <Wrapper>
       <Splash />
+      <Blurb />
       <Phase1 />
+      <Phase2 />
+      <Commodites />
       <Contact />
       <Footer />
     </Wrapper>

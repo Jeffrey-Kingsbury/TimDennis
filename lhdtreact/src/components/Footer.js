@@ -24,17 +24,30 @@ flex-direction: column;
 justify-content: space-around;
 align-items: center;
 color: var(--light);
+@media only screen and (max-width: 900px) {
+
+    height: 9rem;
+    justify-content: center;
+
+    }
 `;
 
 const Kingsbury = styled.a`
 font-size: small;
 text-decoration: none;
 color: var(--light);
+@media only screen and (max-width: 900px) {
+    font-size: medium;
+    }
 `;
 
 const Disclosure = styled.p`
 width: 70%;
 text-align: center;
 font-size: small;
+@media only screen and (max-width: 900px) {
+        width:90%;
+        margin-top: .5rem;
+    }
 `;
 export default Footer;

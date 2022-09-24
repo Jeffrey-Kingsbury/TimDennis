@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useContext } from 'react';
 import { userContext } from '../UserContext';
-import bg1 from '../images/HDT_aerialshot_mood2.jpg';
+import bg1 from '../images/Condo_Winter_1.jpg';
+import bg2 from '../images/MDV_Winter_1.jpg';
 import FadeIn from 'react-fade-in';
 
 const Phase1 = () => {
@@ -11,38 +12,71 @@ const Phase1 = () => {
         <Wrapper id="phase1">
             <LargeCont>
                 <Title>PHASE 1</Title>
-
-                <Subtitle>Maisons de ville et condos en montagne</Subtitle>
-                <CircleWrapper>
-                    <CircleLeft>
-                        Maisons de ville en montagne
-                        <CircleNum>28</CircleNum>
-                    </CircleLeft>
-                </CircleWrapper>
-{/* 
-                <CircleWrapper>
-                    <CircleRight></CircleRight>
-                </CircleWrapper> */}
             </LargeCont>
 
             <LargerCont>
+                <ImageContainer1></ImageContainer1>
                 <DataContainer>
 
-                </DataContainer>
-            <CircleWrapper>
-                    <CircleRight>
-                    Condos en montagne
-                    <CircleNum>36</CircleNum>
+                    <Subtitle>
+                        {lang === "FR" && "28 Maisons de ville en montagne"}
+                        {lang !== "FR" && "28 Mountain Townhomes"}
+                    </Subtitle>
 
-                    </CircleRight>
-                </CircleWrapper>
+                    {lang === "FR" &&
+                            <DetailsUl>
+                                <DetailsLi>3 Chambres à coucher</DetailsLi>
+                                <DetailsLi>Aire habitable 1698-1710 pieds carrés</DetailsLi>
+                                <DetailsLi>Foyer au gaz</DetailsLi>
+                                <DetailsLi>Spa "expérience thermale" chauffages extérieurs, foyers, rangement pour skis, séchoirs à chaussures</DetailsLi>
+                            </DetailsUl>
+                        }
+
+                        {lang !== "FR" &&
+                            <DetailsUl>
+                                <DetailsLi>3 Bedrooms</DetailsLi>
+                                <DetailsLi>Livable area: 1698-1710 sqft</DetailsLi>
+                                <DetailsLi>Gas Fireplace</DetailsLi>
+                                <DetailsLi>Spa "thermal experience", Outdoor Heater, Firepits, Ski Locker, Boot Dryer</DetailsLi>
+                            </DetailsUl>
+                        }
+                </DataContainer>
+            </LargerCont>
+
+            <LargerCont>
+                <DataContainer>
+                    <Subtitle>
+                        {lang === "FR" && "36 Condos en montagne"}
+                        {lang !== "FR" && "36 Mountain Condos"}
+                    </Subtitle>
+
+                    <Details>
+                        {lang === "FR" &&
+                            <DetailsUl>
+                                <DetailsLi>2-3 Chambres à coucher</DetailsLi>
+                                <DetailsLi>Air habitable 1256-1600 pieds carrés</DetailsLi>
+                                <DetailsLi>Foyer</DetailsLi>
+                                <DetailsLi>Balcons, chauffages extérieurs, rangements pour skis, séchoirs à chaussures</DetailsLi>
+                            </DetailsUl>
+                        }
+
+                        {lang !== "FR" &&
+                            <DetailsUl>
+                                <DetailsLi>2-3 Bedrooms</DetailsLi>
+                                <DetailsLi>Livable area 1256-1600 sqft</DetailsLi>
+                                <DetailsLi>Fireplace</DetailsLi>
+                                <DetailsLi>Balconies, Outdoor Heaters, Boot Dryers, Ski Locker</DetailsLi>
+                            </DetailsUl>
+                        }
+                    </Details>
+                </DataContainer>
+                <ImageContainer2></ImageContainer2>
             </LargerCont>
         </Wrapper>
     )
 };
 
 const Wrapper = styled.div`
-height: 200vh;
 width: 100vw;
 overflow: hidden;
 display: flex;
@@ -53,7 +87,7 @@ align-items: center;
 
 const LargeCont = styled.div`
 width: 100%;
-height: 15vh;
+height: 3rem;
 background-color: var(--dark);
 color: var(--light);
 position: relative;
@@ -69,13 +103,9 @@ height: 50vh;
 background-color: aliceblue;
 position: relative;
 display: flex;
-flex-direction: column;
+flex-direction: row;
 justify-content: center;
 align-items: center;
-background-image: url(${bg1});
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;
 `;
 
 const Title = styled.h1`
@@ -86,54 +116,31 @@ const Subtitle = styled.h3`
 text-decoration: underline;
 `;
 
-const CircleWrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-z-index: 9;
-`;
-
-const CircleNum = styled.p`
-    font-size: larger;
-`;
-
-const CircleLeft = styled.div`
-border-radius: 50%;
-height: 10rem;
-width: 10rem;
-background-color: var(--blue3);
-box-shadow: 0 5px 8px 2px rgba(0,0,0,.4);
-position: absolute;
-bottom: -5rem;
-left: 25%;
-text-align: center;
-color: white;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`;
-
-const CircleRight = styled.div`
-border-radius: 50%;
-height: 10rem;
-width: 10rem;
-background-color: var(--blue3);
-box-shadow: 0 5px 8px 2px rgba(0,0,0,.4);
-position: absolute;
-bottom: -5rem;
-right: 25%;
-text-align: center;
-color: white;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`;
-
 const DataContainer = styled.div`
 height: 100%;
 width: 50%;
-background-color: rgba(0,0,0,.4);
+background: linear-gradient(var(--light),var(--blue1));
 `;
+
+const ImageContainer1 = styled.div`
+height: 100%;
+width: 50%;
+background-image: url(${bg1});
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+`;
+
+const ImageContainer2 = styled.div`
+height: 100%;
+width: 50%;
+background-image: url(${bg2});
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+`;
+
+const Details = styled.p``;
+const DetailsUl = styled.ul``;
+const DetailsLi = styled.li``;
 export default Phase1;

@@ -7,9 +7,9 @@ import logoSrc from "../images/Logo/White/LHDT_Logo_White.png";
 const Contact = () => {
     const { lang } = useContext(userContext);
     let formData = {};
-    
-    
-    const handleSubmit = async(e) =>{
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         e.target.querySelectorAll("input, textarea, select").forEach(e => {
             console.log(e.name + " = " + e.value)
@@ -17,7 +17,7 @@ const Contact = () => {
         });
 
 
-    const emailHtml = `
+        const emailHtml = `
     <b>Name:</b> ${formData.firstName} ${formData.lastName}<br>
     <b>Email</b>: ${formData.email}
     <b>Tel</b>: ${formData.telephone} <br>
@@ -28,7 +28,7 @@ const Contact = () => {
 
     `;
 
-    const emailText = `Name:${formData.firstName} ${formData.lastName}  ///
+        const emailText = `Name:${formData.firstName} ${formData.lastName}  ///
     Email: ${formData.email} ///
     Tel: ${formData.telephone} ///
     Unit type: ${formData.unitType} ///
@@ -36,9 +36,26 @@ const Contact = () => {
     Is a broker?: ${formData.isBroker} ///
     Message: ${formData.userMessage} `;
 
+        await fetch('http://api.lhymnedestrembles-timdennis.com/sendmail', {
+            method: "POST", body: JSON.stringify({
+
+                "to": "alimentationjeff@gmail.com",
+                "subject": "A new message from LHDT",
+                "text": emailText,
+                "html": emailHtml
+
+            }),
+            mode: "no-cors",
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+
 
         //const sendEmail = await fetch()
-            //Send the email and get the res.
+        //Send the email and get the res.
         //.then(formData = {});
 
     };
@@ -48,33 +65,30 @@ const Contact = () => {
 
 
             <Info>
+                <Hr />
                 <LogoWrap>
                     <Logo alt="Logo" src={logoSrc} />
                 </LogoWrap>
-
-                <Hr />
-                {lang === "FR" && "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-                {lang !== "FR" && "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
                 <Hr />
 
             </Info>
-            <Form onSubmit={(e)=>{handleSubmit(e)}}>
+            <Form onSubmit={(e) => { handleSubmit(e) }}>
                 <Title>514.774.0224</Title>
                 <Title>timothy.dennis@remax-quebec.com</Title>
-                <Hr/>
+                <Hr />
                 <Dual>
                     <Span>
                         <LabelDual>
                             {lang === "FR" && "Prénom"}
                             {lang !== "FR" && "First name"}
                         </LabelDual>
-                        <InputDual name="firstName" maxLength={100}/>
+                        <InputDual name="firstName" maxLength={100} required />
                     </Span>            <Span>
                         <LabelDual>
                             {lang === "FR" && "Nom"}
                             {lang !== "FR" && "Last name"}
                         </LabelDual>
-                        <InputDual name="lastName" maxLength={100}/>
+                        <InputDual name="lastName" maxLength={100} required />
                     </Span>
                 </Dual>
 
@@ -84,7 +98,7 @@ const Contact = () => {
                         {lang === "FR" && "Courriel"}
                         {lang !== "FR" && "Email"}
                     </Label>
-                    <Input type="email" name="email" maxLength={100}/>
+                    <Input type="email" name="email" maxLength={100} required />
                 </Span>
 
                 <Span>
@@ -92,32 +106,43 @@ const Contact = () => {
                         {lang === "FR" && "Téléphone"}
                         {lang !== "FR" && "Tel."}
                     </Label>
-                    <Input type="tel" name="telephone"/>
+                    <Input type="tel" name="telephone" required />
                 </Span>
 
-<Dual>
-<Span>
-                    <LabelDual>
-                        {lang === "FR" && "Type d'unité"}
-                        {lang !== "FR" && "Type of unit"}
-                    </LabelDual>
-                    <SelectDual name="unitType"> </SelectDual>
-                </Span>
-                <Span>
-                    <LabelDual>
-                        Budget
-                    </LabelDual>
-                    <SelectDual name="budget"> </SelectDual>
-                </Span>
+                <Dual>
+                    <Span>
+                        <LabelDual>
+                            {lang === "FR" && "Type d'unité"}
+                            {lang !== "FR" && "Type of unit"}
+                        </LabelDual>
+                        <SelectDual name="unitType">
 
-</Dual>
+                        </SelectDual>
+                    </Span>
+                    <Span>
+                        <LabelDual>
+                            Budget
+                        </LabelDual>
+                        <SelectDual name="budget"> </SelectDual>
+                    </Span>
+
+                </Dual>
 
                 <Span>
                     <Label>
                         {lang === "FR" && "Êtes-vous un courtier"}
                         {lang !== "FR" && "Are you a real estate broker?"}
                     </Label>
-                    <Select name="isBroker"> </Select>
+                    <Select name="isBroker" required>
+                        <option value="Yes">
+                            {lang === "FR" && "Oui"}
+                            {lang !== "FR" && "Yes"}
+                        </option>
+                        <option value="No">
+                            {lang === "FR" && "Non"}
+                            {lang !== "FR" && "No"}
+                        </option>
+                    </Select>
                 </Span>
 
                 <Span>
@@ -151,6 +176,11 @@ color: var(--light);
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
+    @media only screen and (max-width: 900px) {
+        height: auto;
+        min-height: 100vh;
+
+    }   
 `;
 
 const Darken = styled.div`

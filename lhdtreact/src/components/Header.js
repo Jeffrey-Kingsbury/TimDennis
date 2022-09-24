@@ -16,24 +16,19 @@ const Header = () => {
             <LogoWrap>
                 <Logo src={logoSrc} alt="L'hymne des trembles logo" draggable={false} />
                 <Nav>
-                    <FadeIn delay={200} transitionDuration={900}>
-                        <NavItem href="#">
-                            {lang === "FR" ? "A PROPOS" : "ABOUT"}
-                        </NavItem>
-                    </FadeIn>
                     <FadeIn delay={400} transitionDuration={900}>
                         <NavItem href="#phase1">
-                            PHASE 1
+                        PHASE 1
                         </NavItem>
                     </FadeIn>
                     <FadeIn delay={600} transitionDuration={900}>
-                        <NavItem>
+                    <NavItem href="#phase2">
                             PHASE 2
                         </NavItem>
                     </FadeIn>
 
                     <FadeIn delay={800} transitionDuration={900}>
-                        <NavItem>
+                        <NavItem href="#commodites">
                             {lang === "FR" ? "COMMODITES" : "AMENITIES"}
                         </NavItem>
 
@@ -48,7 +43,7 @@ const Header = () => {
 
                     <FadeIn delay={1200} transitionDuration={900}>
 
-                        <NavItem onClick={() => { langChange() }}>{lang}</NavItem>
+                        <NavItem onClick={() => { langChange() }}>{lang === "FR" ? "EN" : "FR"}</NavItem>
                     </FadeIn>
                 </Nav>
             </LogoWrap>
@@ -86,7 +81,8 @@ const Logo = styled.img`
 
 const Nav = styled.ul`
 height: 70%;
-width: 70%;
+min-width: 70%;
+max-width: 100%;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -103,6 +99,9 @@ list-style: none;
 margin: 0 2rem;
 cursor: pointer;
 transition: all .1s ease;
+width: auto;
+word-wrap:normal;
+text-align: center;
 
     &:hover{    
         transform: translateZ(0) scale(1.03);
@@ -120,27 +119,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-`;
-
-
-const LangButton = styled.li`
-color: var(--light);
-text-decoration: none;
-list-style: none;
-margin: 0 2rem;
-cursor: pointer;
-transition: all .1s ease;
-
-    &:hover{    
-        transform: translateZ(0) scale(1.03);
-    }
-
-    &:active{    
-        transform: translateZ(0) scale(.97);
-    }   
-@media only screen and (max-width: 900px) {
-        display:none;
-    }
 `;
 
 export default Header;
