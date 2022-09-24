@@ -3,11 +3,13 @@ import { useContext } from 'react';
 import { userContext } from '../UserContext';
 import bg from '../images/TREMBLANT_SF_interior_autumn_LR.jpg';
 import logoSrc from "../images/Logo/White/LHDT_Logo_White.png";
+import { useState } from "react";
 
 const Contact = () => {
     const { lang } = useContext(userContext);
-    let formData = {};
+    const [sending, setSending] = useState(false);
 
+    let formData = {};
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,7 +40,7 @@ const Contact = () => {
 
         await fetch('http://api.lhymnedestrembles-timdennis.com/sendmail', {
             body: JSON.stringify({
-                "to": "alimentationjeff@gmail.com",
+                "to": "timothy.dennis@remax-quebec.com",
                 "subject": "A new message from LHDT",
                 "text": emailText,
                 "html": emailHtml
@@ -50,11 +52,16 @@ const Contact = () => {
                 'Content-Type': 'application/json'
             },
         })
+            .then(setSending("sending"))
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === 200) {
+                    setSending("sent");
+                    return;
+                }
+                setSending("error");
+            })
 
-
-        //const sendEmail = await fetch()
-        //Send the email and get the res.
-        //.then(formData = {});
 
     };
 
@@ -70,111 +77,142 @@ const Contact = () => {
                 <Hr />
 
             </Info>
-            <Form onSubmit={(e) => { handleSubmit(e) }}>
-                <Title>514.774.0224</Title>
-                <Title>timothy.dennis@remax-quebec.com</Title>
-                <Hr />
-                <Dual>
+            {!sending &&
+                <Form onSubmit={(e) => { handleSubmit(e) }}>
+                    <Title>514.774.0224</Title>
+                    <Title>timothy.dennis@remax-quebec.com</Title>
+                    <Hr />
+                    <Dual>
+                        <Span>
+                            <LabelDual>
+                                {lang === "FR" && "Prénom"}
+                                {lang !== "FR" && "First name"}
+                            </LabelDual>
+                            <InputDual name="firstName" maxLength={100} required />
+                        </Span>            <Span>
+                            <LabelDual>
+                                {lang === "FR" && "Nom"}
+                                {lang !== "FR" && "Last name"}
+                            </LabelDual>
+                            <InputDual name="lastName" maxLength={100} required />
+                        </Span>
+                    </Dual>
+
+
                     <Span>
-                        <LabelDual>
-                            {lang === "FR" && "Prénom"}
-                            {lang !== "FR" && "First name"}
-                        </LabelDual>
-                        <InputDual name="firstName" maxLength={100} required />
-                    </Span>            <Span>
-                        <LabelDual>
-                            {lang === "FR" && "Nom"}
-                            {lang !== "FR" && "Last name"}
-                        </LabelDual>
-                        <InputDual name="lastName" maxLength={100} required />
+                        <Label>
+                            {lang === "FR" && "Courriel"}
+                            {lang !== "FR" && "Email"}
+                        </Label>
+                        <Input type="email" name="email" maxLength={100} required />
                     </Span>
-                </Dual>
 
-
-                <Span>
-                    <Label>
-                        {lang === "FR" && "Courriel"}
-                        {lang !== "FR" && "Email"}
-                    </Label>
-                    <Input type="email" name="email" maxLength={100} required />
-                </Span>
-
-                <Span>
-                    <Label>
-                        {lang === "FR" && "Téléphone"}
-                        {lang !== "FR" && "Tel."}
-                    </Label>
-                    <Input type="tel" name="telephone" required />
-                </Span>
-
-                <Dual>
                     <Span>
-                        <LabelDual>
-                            {lang === "FR" && "Type d'unité"}
-                            {lang !== "FR" && "Type of unit"}
-                        </LabelDual>
-                        <SelectDual name="unitType" required>
+                        <Label>
+                            {lang === "FR" && "Téléphone"}
+                            {lang !== "FR" && "Tel."}
+                        </Label>
+                        <Input type="tel" name="telephone" placeholder="4505555555" required pattern="[0-9]{10}"/>
+                    </Span>
+
+                    <Dual>
+                        <Span>
+                            <LabelDual>
+                                {lang === "FR" && "Type d'unité"}
+                                {lang !== "FR" && "Type of unit"}
+                            </LabelDual>
+                            <SelectDual name="unitType" required>
+                                <option value={null} selected></option>
+                                <Option value="Maisons de ville en montagne - Phase 1">{lang === "FR" ? "Maisons de ville en montagne " : "Mountain Townhomes "}- Phase 1</Option>
+                                <Option value="Condos en montagne - Phase 1">{lang === "FR" ? "Condos en montagne " : "Mountain Condos "}- Phase 1</Option>
+                                <Option value="Maisons en montagne - Phase 2">{lang === "FR" ? "Maisons en montagne " : "Mountain Homes "}- Phase 2</Option>
+                            </SelectDual>
+                        </Span>
+                        <Span>
+                            <LabelDual>
+                                Budget
+                            </LabelDual>
+                            <SelectDual name="budget" required>
+                                <option value={null} selected></option>
+                                <Option value="500-750">$500,000 - $750,000</Option>
+                                <Option value="750-1">$500,000 - $1,000,000</Option>
+                                <Option value="1-1.25">$1,000,000 - $1,250,000</Option>
+                                <Option value="1.25-1.5">$1,250,000 - $1,500,000</Option>
+                                <Option value="1.5plus">$1,500,000 + </Option>
+                            </SelectDual>
+                        </Span>
+
+                    </Dual>
+
+                    <Span>
+                        <Label>
+                            {lang === "FR" && "Êtes-vous un courtier"}
+                            {lang !== "FR" && "Are you a real estate broker?"}
+                        </Label>
+                        <Select name="isBroker" required>
                             <option value={null} selected></option>
-                            <Option value="Maisons de ville en montagne - Phase 1">{lang === "FR" ? "Maisons de ville en montagne " : "Mountain Townhomes " }- Phase 1</Option>
-                            <Option value="Condos en montagne - Phase 1">{lang === "FR" ? "Condos en montagne " : "Mountain Condos " }- Phase 1</Option>
-                            <Option value="Maisons en montagne - Phase 2">{lang === "FR" ? "Maisons en montagne " : "Mountain Homes " }- Phase 2</Option>
-                        </SelectDual>
+                            <Option value="Yes">
+                                {lang === "FR" && "Oui"}
+                                {lang !== "FR" && "Yes"}
+                            </Option>
+                            <Option value="No">
+                                {lang === "FR" && "Non"}
+                                {lang !== "FR" && "No"}
+                            </Option>
+                        </Select>
                     </Span>
+
                     <Span>
-                        <LabelDual>
-                            Budget
-                        </LabelDual>
-                        <SelectDual name="budget" required>
-                            <option value={null} selected></option>
-                            <Option value="500-750">$500,000 - $750,000</Option>
-                            <Option value="750-1">$500,000 - $1,000,000</Option>
-                            <Option value="1-1.25">$1,000,000 - $1,250,000</Option>
-                            <Option value="1.25-1.5">$1,250,000 - $1,500,000</Option>
-                            <Option value="1.5plus">$1,500,000 + </Option>
-                        </SelectDual>
+                        <Label>
+                            Message
+                        </Label>
+                        <TextArea name="userMessage" maxLength={10000} />
                     </Span>
 
-                </Dual>
-
-                <Span>
-                    <Label>
-                        {lang === "FR" && "Êtes-vous un courtier"}
-                        {lang !== "FR" && "Are you a real estate broker?"}
-                    </Label>
-                    <Select name="isBroker" required>
-                    <option value={null} selected></option>
-                        <Option value="Yes">
-                            {lang === "FR" && "Oui"}
-                            {lang !== "FR" && "Yes"}
-                        </Option>
-                        <Option value="No">
-                            {lang === "FR" && "Non"}
-                            {lang !== "FR" && "No"}
-                        </Option>
-                    </Select>
-                </Span>
-
-                <Span>
-                    <Label>
-                        Message
-                    </Label>
-                    <TextArea name="userMessage" maxLength={10000} />
-                </Span>
-
-                <Submit>
-                    {lang === "FR" && "Soumettre"}
-                    {lang !== "FR" && "Submit"}
-                </Submit>
-            </Form>
-
+                    <Submit>
+                        {lang === "FR" && "Soumettre"}
+                        {lang !== "FR" && "Submit"}
+                    </Submit>
+                </Form>
+            }
+            {sending === "sending" &&
+                <Sending>
+                    {lang === "FR" ? "Votre message est en cours d'envoi, veuillez patienter." : "Your message is being sent, please wait."}
+                </Sending>
+            }
+            {sending === "sent" &&
+                <Success>
+                    {lang === "FR" ? "Votre message a été envoyé avec succès." : "Your message was sent successfully."}
+                </Success>
+            }
+            {sending === "error" &&
+                <Error>
+                    {lang === "FR" ? "Une erreur s'est produite, veuillez rafraîchir et réessayer." : "An error occurred, please refresh and try again."}
+                </Error>
+            }
         </Darken>
     </Wrapper>)
 };
 
-// price brackets
-// are you a broker
-// unit type
 
+const Error = styled.h2`
+font-family: "Ginger";
+font-size: x-large;
+color: darkred;
+text-align: center;
+`;
+const Success = styled.h2`
+font-family: "Ginger";
+font-size: x-large;
+color: darkgreen;
+text-align: center;
+`;
+const Sending = styled.h2`
+font-family: "Ginger";
+font-size: x-large;
+color: var(--light);
+text-align: center;
+`;
 
 const Wrapper = styled.div`
 font-family: "ginger";
