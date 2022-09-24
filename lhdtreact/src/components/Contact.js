@@ -18,13 +18,13 @@ const Contact = () => {
 
 
         const emailHtml = `
-    <b>Name:</b> ${formData.firstName} ${formData.lastName}<br>
-    <b>Email</b>: ${formData.email}
-    <b>Tel</b>: ${formData.telephone} <br>
-    <b>Unit type</b>: ${formData.unitType} <br>
-    <b>Budget</b>: ${formData.budget} <br>
-    <b>Is a broker?</b>: ${formData.isBroker} <br>
-    <b>Message</b>: ${formData.userMessage} <br>
+    <b>Name:</b> ${formData.firstName} ${formData.lastName}<br><br>
+    <b>Email</b>: ${formData.email}<br><br>
+    <b>Tel</b>: ${formData.telephone} <br><br>
+    <b>Unit type</b>: ${formData.unitType} <br><br>
+    <b>Budget</b>: ${formData.budget}<br><br>
+    <b>Is a broker?</b>: ${formData.isBroker}<br><br>
+    <b>Message</b>: ${formData.userMessage}<br><br>
 
     `;
 
@@ -37,15 +37,13 @@ const Contact = () => {
     Message: ${formData.userMessage} `;
 
         await fetch('http://api.lhymnedestrembles-timdennis.com/sendmail', {
-            method: "POST", body: JSON.stringify({
-
+            body: JSON.stringify({
                 "to": "alimentationjeff@gmail.com",
                 "subject": "A new message from LHDT",
                 "text": emailText,
                 "html": emailHtml
 
             }),
-            mode: "no-cors",
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -115,15 +113,25 @@ const Contact = () => {
                             {lang === "FR" && "Type d'unité"}
                             {lang !== "FR" && "Type of unit"}
                         </LabelDual>
-                        <SelectDual name="unitType">
-
+                        <SelectDual name="unitType" required>
+                            <option value={null} selected></option>
+                            <Option value="Maisons de ville en montagne - Phase 1">{lang === "FR" ? "Maisons de ville en montagne " : "Mountain Townhomes " }- Phase 1</Option>
+                            <Option value="Condos en montagne - Phase 1">{lang === "FR" ? "Condos en montagne " : "Mountain Condos " }- Phase 1</Option>
+                            <Option value="Maisons en montagne - Phase 2">{lang === "FR" ? "Maisons en montagne " : "Mountain Homes " }- Phase 2</Option>
                         </SelectDual>
                     </Span>
                     <Span>
                         <LabelDual>
                             Budget
                         </LabelDual>
-                        <SelectDual name="budget"> </SelectDual>
+                        <SelectDual name="budget" required>
+                            <option value={null} selected></option>
+                            <Option value="500-750">$500,000 - $750,000</Option>
+                            <Option value="750-1">$500,000 - $1,000,000</Option>
+                            <Option value="1-1.25">$1,000,000 - $1,250,000</Option>
+                            <Option value="1.25-1.5">$1,250,000 - $1,500,000</Option>
+                            <Option value="1.5plus">$1,500,000 + </Option>
+                        </SelectDual>
                     </Span>
 
                 </Dual>
@@ -134,14 +142,15 @@ const Contact = () => {
                         {lang !== "FR" && "Are you a real estate broker?"}
                     </Label>
                     <Select name="isBroker" required>
-                        <option value="Yes">
+                    <option value={null} selected></option>
+                        <Option value="Yes">
                             {lang === "FR" && "Oui"}
                             {lang !== "FR" && "Yes"}
-                        </option>
-                        <option value="No">
+                        </Option>
+                        <Option value="No">
                             {lang === "FR" && "Non"}
                             {lang !== "FR" && "No"}
-                        </option>
+                        </Option>
                     </Select>
                 </Span>
 
@@ -293,6 +302,8 @@ margin: .2rem 0 1rem 0;
 background-color: rgba(90,90,90,0.4);
 color: white;
 padding: 0 0 0 .5rem;
+font-family: "Ginger";
+font-size: medium;
 :focus{
     outline: none;
 }
@@ -307,6 +318,8 @@ margin: .2rem 0 1rem 5%;
 background-color: rgba(90,90,90,0.4);
 color: white;
 padding: 0 0 0 .5rem;
+font-family: "Ginger";
+font-size: medium;
 :focus{
     outline: none;
 }
@@ -331,11 +344,17 @@ border-bottom: 1px solid var(--light);
 margin: .2rem 0 1rem 0;
 background-color: rgba(90,90,90,0.4);
 color: white;
+font-family: "Ginger";
+font-size: larger;
 :focus{
     outline: none;
 }
-
 `;
+
+const Option = styled.option`
+color: black;
+font-family: "Ginger";
+`
 
 const SelectDual = styled.select`
 width: 90%;
@@ -345,6 +364,8 @@ border-bottom: 1px solid var(--light);
 margin: .2rem 0 1rem 5%;
 background-color: rgba(90,90,90,0.4);
 color: white;
+font-family: "Ginger";
+font-size: medium;
 :focus{
     outline: none;
 }

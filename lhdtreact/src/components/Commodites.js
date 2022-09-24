@@ -39,10 +39,41 @@ const Wrapper = styled.div`
 padding: 3rem 0;
 background-color: var(--blue2);
 width: 100%;
+height: 300px;
 
+    @media only screen and (max-width: 900px) {
+        height: auto;
+    }
 `;
 
-const Details = styled.p``;
-const DetailsUl = styled.ul``;
-const DetailsLi = styled.li``;
+const DetailsUl = styled.ul`
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+
+    @media only screen and (max-width: 900px) {
+        flex-wrap: nowrap;
+    }
+`;
+const DetailsLi = styled.li`
+height:30%;
+max-width: 30%;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+list-style: decimal;
+color: var(--light);
+font-family: "Ginger";
+font-size: larger;
+
+    @media only screen and (max-width: 900px) {
+        flex-wrap: nowrap;
+        max-width: 95%;
+        height: auto;
+        margin: 1rem auto;
+    }
+`;
 export default Commodites;

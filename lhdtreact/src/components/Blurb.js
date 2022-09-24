@@ -6,19 +6,43 @@ const Blurb = () => {
     const { lang, setLang } = useContext(userContext);
     return (<Wrapper>
 
-        {lang === "FR" && <>14 Hectares
-            6 Phases
-            500 unités</>}
-        {lang !== "FR" && <>14 Hectares
-            6 Phases
-            500 Residences</>}
+        {lang === "FR" &&
+            <>
+                <P>14 Hectares</P>
+                <P>6 Phases</P>
+                <P>500 unités</P>
+            </>
+        }
+        {lang !== "FR" &&
+            <>
+                <P>14 Hectares</P>
+                <P>6 Phases</P>
+                <P>500 Residences</P>
+            </>
+        }
     </Wrapper>)
 }
 
 const Wrapper = styled.div`
 padding: 3rem 0;
-background-color: var(--blue1);
+background-color: var(--blue2);
 width: 100%;
-
+display: flex;
+justify-content: space-around;
+align-items: center;
 `;
+
+const P = styled.p`
+user-select: none;
+text-shadow: 2px 2px 1px rgba(0,0,0,0.3);
+font-size: x-large;
+font-family: "Ginger";
+color: var(--light);
+
+@media only screen and (max-width: 900px) {
+    font-size: large;
+    }   
+`;
+
+
 export default Blurb;

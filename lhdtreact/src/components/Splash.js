@@ -48,6 +48,7 @@ background-image: url(${bg});
 background-position: bottom;
 background-size: cover;
 flex-direction: column;
+box-shadow: 0px 3px 5px 2px rgba(0,0,0,0.4);
 @media only screen and (max-width: 900px) {
 justify-content:start;
 align-items: center;

@@ -18,11 +18,11 @@ const Header = () => {
                 <Nav>
                     <FadeIn delay={400} transitionDuration={900}>
                         <NavItem href="#phase1">
-                        PHASE 1
+                            PHASE 1
                         </NavItem>
                     </FadeIn>
                     <FadeIn delay={600} transitionDuration={900}>
-                    <NavItem href="#phase2">
+                        <NavItem href="#phase2">
                             PHASE 2
                         </NavItem>
                     </FadeIn>
@@ -62,6 +62,7 @@ position: sticky;
 margin-bottom: -6rem;
 top: 0;
 z-index: 999;
+box-shadow: 0px 3px 5px 2px rgba(0,0,0,0.4);
 
 @media only screen and (max-width: 900px) {
         background: var(--dark);
@@ -87,8 +88,9 @@ display: flex;
 align-items: center;
 justify-content: center;
 @media only screen and (max-width: 900px) {
-        display:none
-
+    width:100%;
+    font-size: small;
+    justify-content: space-around;
     }
 `;
 
@@ -110,6 +112,10 @@ text-align: center;
     &:active{    
         transform: translateZ(0) scale(.97);
     }   
+
+    @media only screen and (max-width: 900px) {
+    margin: 1px;
+    }
 `;
 
 const LogoWrap = styled.span`
