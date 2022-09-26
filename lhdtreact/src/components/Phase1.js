@@ -25,19 +25,19 @@ const Phase1 = () => {
 
                     {lang === "FR" &&
                         <DetailsUl>
-                            <DetailsLi>• 3 Chambres à coucher</DetailsLi>
-                            <DetailsLi>• Aire habitable 1698-1710 pieds carrés</DetailsLi>
-                            <DetailsLi>• Foyer au gaz</DetailsLi>
-                            <DetailsLi>• Spa "expérience thermale" chauffages extérieurs, foyers, rangement pour skis, séchoirs à chaussures</DetailsLi>
+                            <DetailsLi>3 Chambres à coucher</DetailsLi>
+                            <DetailsLi>Aire habitable 1698-1710 pieds carrés</DetailsLi>
+                            <DetailsLi>Foyer au gaz</DetailsLi>
+                            <DetailsLi>Spa "expérience thermale" chauffages extérieurs, foyers, rangement pour skis, séchoirs à chaussures</DetailsLi>
                         </DetailsUl>
                     }
 
                     {lang !== "FR" &&
                         <DetailsUl>
-                            <DetailsLi>• 3 Bedrooms</DetailsLi>
-                            <DetailsLi>• Livable area: 1698-1710 sqft</DetailsLi>
-                            <DetailsLi>• Gas Fireplace</DetailsLi>
-                            <DetailsLi>• Spa "thermal experience", Outdoor Heater, Firepits, Ski Locker, Boot Dryer</DetailsLi>
+                            <DetailsLi>3 Bedrooms</DetailsLi>
+                            <DetailsLi>Livable area: 1698-1710 sqft</DetailsLi>
+                            <DetailsLi>Gas Fireplace</DetailsLi>
+                            <DetailsLi>Spa "thermal experience", Outdoor Heater, Firepits, Ski Locker, Boot Dryer</DetailsLi>
                         </DetailsUl>
                     }
                 </DataContainer1>
@@ -45,7 +45,7 @@ const Phase1 = () => {
 
             <Splitter />
 
-            <LargerCont>
+            <LargerCont id="SecondCont">
                 <DataContainer2>
                     <Subtitle>
                         {lang === "FR" && "36 Condos en montagne"}
@@ -54,19 +54,19 @@ const Phase1 = () => {
 
                     {lang === "FR" &&
                         <DetailsUl>
-                            <DetailsLi>• 2-3 Chambres à coucher</DetailsLi>
-                            <DetailsLi>• Air habitable 1256-1600 pieds carrés</DetailsLi>
-                            <DetailsLi>• Foyer</DetailsLi>
-                            <DetailsLi>• Balcons, chauffages extérieurs, rangements pour skis, séchoirs à chaussures</DetailsLi>
+                            <DetailsLi>2-3 Chambres à coucher</DetailsLi>
+                            <DetailsLi>Aire habitable 1256-1600 pieds carrés</DetailsLi>
+                            <DetailsLi>Foyer</DetailsLi>
+                            <DetailsLi>Balcons, chauffages extérieurs, rangements pour skis, séchoirs à chaussures</DetailsLi>
                         </DetailsUl>
                     }
 
                     {lang !== "FR" &&
                         <DetailsUl>
-                            <DetailsLi>• 2-3 Bedrooms</DetailsLi>
-                            <DetailsLi>• Livable area 1256-1600 sqft</DetailsLi>
-                            <DetailsLi>• Fireplace</DetailsLi>
-                            <DetailsLi>• Balconies, Outdoor Heaters, Boot Dryers, Ski Locker</DetailsLi>
+                            <DetailsLi>2-3 Bedrooms</DetailsLi>
+                            <DetailsLi>Livable area 1256-1600 sqft</DetailsLi>
+                            <DetailsLi>Fireplace</DetailsLi>
+                            <DetailsLi>Balconies, Outdoor Heaters, Boot Dryers, Ski Locker</DetailsLi>
                         </DetailsUl>
                     }
                 </DataContainer2>
@@ -95,6 +95,9 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+@media only screen and (max-width: 900px) {
+    background-color: var(--blue3);
+    } 
 `;
 
 const LargerCont = styled.div`
@@ -106,10 +109,18 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
+@media only screen and (max-width: 900px) {
+height: 100vh;
+flex-direction: column;
+    &#SecondCont{
+        flex-direction: column-reverse;
+    }
+    } 
 `;
 
 const Title = styled.h1`
 font-size: 3rem;
+font-family: "independant";
 `;
 
 const Subtitle = styled.h3`
@@ -121,7 +132,6 @@ font-family: "independant";
 color: var(dark);
 
 @media only screen and (max-width: 900px) {
-        background-color:var(--dark-90);
         color: var(--light);
         padding: 1rem 0;
         width: 100%;
@@ -136,14 +146,10 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-    @media only screen and (max-width: 900px) {
-        background:0;
-        background-image: url(${bg1});
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+@media only screen and (max-width: 900px) {
+        background:var(--dark);
         width: 100%;
-    }  
+    }   
 `;
 
 const DataContainer2 = styled.div`
@@ -155,11 +161,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
     @media only screen and (max-width: 900px) {
-        background:0;
-        background-image: url(${bg2});
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+        background:var(--dark);
         width: 100%;
     }  
 `;
@@ -173,8 +175,8 @@ background-repeat: no-repeat;
 background-position: center;
 box-shadow: 3px 0px 5px 2px rgba(0,0,0,0.4);
 z-index: 9;
-@media only screen and (max-width: 900px) {
-        display: none;
+@media only screen and (max-width: 900px) { 
+    width: 100%;
     }  
 `;
 
@@ -187,8 +189,8 @@ background-repeat: no-repeat;
 background-position: center;
 box-shadow: -3px 0px 5px 2px rgba(0,0,0,0.4);
 z-index: 9;
-@media only screen and (max-width: 900px) {
-        display: none;
+@media only screen and (max-width: 900px) { 
+    width: 100%;
     }  
 `;
 
@@ -209,9 +211,10 @@ const DetailsUl = styled.ul`
 
 const DetailsLi = styled.li`
 max-width: 50%;
-text-align: center;
 margin: 1rem auto;
 font-size: larger;
+font-family: "Ginger";
+
 `;
 
 export default Phase1;

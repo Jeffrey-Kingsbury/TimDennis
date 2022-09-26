@@ -80,7 +80,7 @@ const Contact = () => {
             {!sending &&
                 <Form onSubmit={(e) => { handleSubmit(e) }}>
                     <Title>514.774.0224</Title>
-                    <Title>timothy.dennis@remax-quebec.com</Title>
+                    <Title id="timEmail">timothy.dennis@remax-quebec.com</Title>
                     <Hr />
                     <Dual>
                         <Span>
@@ -277,7 +277,13 @@ const Hr = styled.hr`
 `;
 
 const Title = styled.h2`
-font-size: 1rem;
+font-size: 2rem;
+
+&#timEmail{
+    @media only screen and (max-width: 900px) {
+        font-size: 1.5rem;
+    } 
+}
 `;
 
 const Form = styled.form`

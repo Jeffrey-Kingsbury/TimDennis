@@ -29,7 +29,7 @@ const Header = () => {
 
                     <FadeIn delay={800} transitionDuration={900}>
                         <NavItem href="#commodites">
-                            {lang === "FR" ? "COMMODITES" : "AMENITIES"}
+                            {lang === "FR" ? "COMMODITÉS" : "AMENITIES"}
                         </NavItem>
 
                     </FadeIn>
@@ -97,7 +97,6 @@ justify-content: center;
 const NavItem = styled.a`
 color: var(--light);
 text-decoration: none;
-list-style: none;
 margin: 0 2rem;
 cursor: pointer;
 transition: all .1s ease;

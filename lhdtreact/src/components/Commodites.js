@@ -50,6 +50,8 @@ const DetailsUl = styled.ul`
 width: 100%;
 height: 100%;
 display: flex;
+justify-content: center;
+align-items: center;
 flex-direction: column;
 flex-wrap: wrap;
 
@@ -59,19 +61,15 @@ flex-wrap: wrap;
 `;
 const DetailsLi = styled.li`
 height:30%;
-max-width: 30%;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-list-style: decimal;
+width: 25%;
 color: var(--light);
 font-family: "Ginger";
 font-size: larger;
+list-style: disc;
 
     @media only screen and (max-width: 900px) {
         flex-wrap: nowrap;
-        max-width: 95%;
+        width: 85%;
         height: auto;
         margin: 1rem auto;
     }
