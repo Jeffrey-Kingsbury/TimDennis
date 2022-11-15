@@ -3,10 +3,9 @@ import { useContext } from 'react';
 import { userContext } from '../UserContext';
 import bg1 from '../images/Condo_Winter_1.jpg';
 import bg2 from '../images/MDV_Winter_1.jpg';
-import FadeIn from 'react-fade-in';
 
 const Phase1 = () => {
-    const { lang, setLang } = useContext(userContext);
+    const { lang } = useContext(userContext);
 
     return (
         <Wrapper id="phase1">

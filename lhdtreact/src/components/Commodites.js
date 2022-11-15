@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { userContext } from '../UserContext';
 
 const Commodites = () =>{
-    const { lang, setLang } = useContext(userContext);
+    const { lang } = useContext(userContext);
     return (<Wrapper id="commodites">
                         {lang === "FR" &&
                             <DetailsUl>
