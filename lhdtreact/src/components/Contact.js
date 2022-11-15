@@ -38,7 +38,7 @@ const Contact = () => {
     Is a broker?: ${formData.isBroker} ///
     Message: ${formData.userMessage} `;
 
-        await fetch('http://api.lhymnedestrembles-timdennis.com/sendmail', {
+        await fetch('https://api.lhymnedestrembles-timdennis.com/sendmail', {
             body: JSON.stringify({
                 "to": "timothy.dennis@remax-quebec.com",
                 "subject": "A new message from LHDT",
